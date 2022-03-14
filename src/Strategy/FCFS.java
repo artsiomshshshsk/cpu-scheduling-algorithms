@@ -6,8 +6,7 @@ import com.artsiom.util.Process;
 
 import java.util.ArrayList;
 
-public class FCFS implements SchedulingStrategy{
-
+public class FCFS extends SchedulingAlgorithm implements SchedulingStrategy{
     @Override
     public void run() {
         System.out.println("___________________FCFS________________________");
@@ -35,17 +34,7 @@ public class FCFS implements SchedulingStrategy{
             }
             resolved.add(temp);
         }
-
         statistics(resolved);
     }
 
-    @Override
-    public void statistics(ArrayList<Process> resolved) {
-        int waitingTime = 0;
-        for(Process process: resolved){
-            waitingTime += process.getWaitingTime();
-        }
-
-        System.out.println("Average waiting time:" + Math.round(waitingTime/resolved.size()));
-    }
 }
