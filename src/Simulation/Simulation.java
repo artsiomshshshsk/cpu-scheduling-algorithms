@@ -2,6 +2,7 @@ package Simulation;
 
 import Comparators.ProcessArrivalTimeComparator;
 import Strategy.FCFS;
+import Strategy.SJF;
 import Strategy.SchedulingStrategy;
 
 import java.util.ArrayList;
