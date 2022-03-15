@@ -15,8 +15,6 @@ public class FCFS extends SchedulingAlgorithm implements SchedulingStrategy{
         ArrayList<Process> processes = Data.getDataSet();
         ArrayList<Process> resolved = new ArrayList<>();
         ArrayList<Process> waitingProcesses = new ArrayList<>();
-
-
         processes.sort(new ProcessArrivalTimeComparator());
 
         int time = 0 ;
@@ -34,31 +32,11 @@ public class FCFS extends SchedulingAlgorithm implements SchedulingStrategy{
                     time++;
                 }
                 resolved.add(temp);
+            }else{
+                time++;
             }
-            time++;
         }
         statistics(resolved);
-    }
-
-
-    public ArrayList<Process> newProcesses(int time , ArrayList<Process> processes,ArrayList<Process> waitingProcesses ){
-        int num = 0;
-
-        for(int i = 0; i < processes.size(); i++){
-            Process process = processes.get(i);
-            if(process.getAppearanceTime() <= time){
-                waitingProcesses.add(process);
-                num++;
-            }else {
-                break;
-            }
-        }
-
-        while(num-- > 0){
-            processes.remove(0);
-        }
-
-        return waitingProcesses;
     }
 
 

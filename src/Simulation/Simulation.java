@@ -31,5 +31,9 @@ public class Simulation {
     public static void main(String[] args) {
         Simulation simulation = new Simulation(new FCFS());
         simulation.runSimulation();
+
+        simulation.setCPUSchedulingAlgorithm(new SJF());
+        simulation.runSimulation();
+
     }
 }

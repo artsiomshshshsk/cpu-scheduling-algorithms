@@ -13,4 +13,21 @@ public abstract class SchedulingAlgorithm{
         }
         System.out.println("Average waiting time:" + Math.round(waitingTime/resolved.size()));
     }
+
+    public ArrayList<Process> newProcesses(int time , ArrayList<Process> processes,ArrayList<Process> waitingProcesses ){
+        int num = 0;
+        for(int i = 0; i < processes.size(); i++){
+            Process process = processes.get(i);
+            if(process.getAppearanceTime() <= time){
+                waitingProcesses.add(process);
+                num++;
+            }else {
+                break;
+            }
+        }
+        while(num-- > 0){
+            processes.remove(0);
+        }
+        return waitingProcesses;
+    }
 }

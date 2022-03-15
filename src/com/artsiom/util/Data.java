@@ -16,8 +16,8 @@ public class Data {
 
             for(int i = 0; i < n;i++){
                 int PID = i + 1;
-                int appearanceTime = random.nextInt(n/2);
-                int phaseLength = random.nextInt(1,4);
+                int appearanceTime = random.nextInt(n);
+                int phaseLength = random.nextInt(1,10);
                 writer.write(String.format("%-15d %-15d %-15d\n", PID, appearanceTime,phaseLength));
             }
         } catch (IOException e) {
