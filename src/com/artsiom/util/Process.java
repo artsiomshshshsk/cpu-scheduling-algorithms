@@ -12,6 +12,7 @@ public class Process {
         this.phaseLength = phaseLength;
         this.appearanceTime = appearanceTime;
         this.remainingTime = phaseLength;
+
     }
 
 
@@ -50,6 +51,7 @@ public class Process {
                 ", phaseLength=" + phaseLength +
                 ", appearanceTime=" + appearanceTime +
                 ", waitingTime=" + waitingTime +
+                ", remaining time=" + remainingTime +
                 '}';
     }
 }

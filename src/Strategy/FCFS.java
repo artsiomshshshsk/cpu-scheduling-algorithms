@@ -22,21 +22,27 @@ public class FCFS extends SchedulingAlgorithm implements SchedulingStrategy{
             waitingProcesses = newProcesses(time, processes, waitingProcesses);
             if(waitingProcesses.size() != 0 ){
                 Process temp = waitingProcesses.remove(0);
-                if(time - temp.getAppearanceTime() < 0){
-                    temp.setWaitingTime(0);
-                }else {
-                    temp.setWaitingTime(time - temp.getAppearanceTime());
-                }
-                while(temp.getRemainingTime() > 0){
-                    temp.setRemainingTime(temp.getRemainingTime()-1);
-                    time++;
-                }
+                time = resolveProcess(temp,time);
                 resolved.add(temp);
             }else{
                 time++;
             }
         }
         statistics(resolved);
+    }
+
+
+    public int resolveProcess(Process temp, int time){
+        if(time - temp.getAppearanceTime() < 0){
+            temp.setWaitingTime(0);
+        }else {
+            temp.setWaitingTime(time - temp.getAppearanceTime());
+        }
+        while(temp.getRemainingTime() > 0){
+            temp.setRemainingTime(temp.getRemainingTime()-1);
+            time++;
+        }
+        return time;
     }
 
 

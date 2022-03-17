@@ -3,6 +3,7 @@ package Simulation;
 import Comparators.ProcessArrivalTimeComparator;
 import Strategy.FCFS;
 import Strategy.SJF;
+import Strategy.SRTF;
 import Strategy.SchedulingStrategy;
 
 import java.util.ArrayList;
@@ -33,6 +34,9 @@ public class Simulation {
         simulation.runSimulation();
 
         simulation.setCPUSchedulingAlgorithm(new SJF());
+        simulation.runSimulation();
+
+        simulation.setCPUSchedulingAlgorithm(new SRTF());
         simulation.runSimulation();
 
     }
