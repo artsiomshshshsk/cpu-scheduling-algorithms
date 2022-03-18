@@ -38,6 +38,5 @@ public class Simulation {
 
         simulation.setCPUSchedulingAlgorithm(new SRTF());
         simulation.runSimulation();
-
     }
 }

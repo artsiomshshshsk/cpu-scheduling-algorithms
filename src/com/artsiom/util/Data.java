@@ -2,6 +2,7 @@ package com.artsiom.util;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Queue;
 import java.util.Random;
 
 public class Data {
@@ -10,6 +11,7 @@ public class Data {
         File dataSet = new File(filePath);
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(dataSet))) {
 
+
             String header = String.format("%-15s %-15s %-15s\n", "PID","Arrival time","Phase Length");
             writer.write(header);
             Random random = new Random();
@@ -17,7 +19,7 @@ public class Data {
             for(int i = 0; i < n;i++){
                 int PID = i + 1;
                 int appearanceTime = random.nextInt(n);
-                int phaseLength = random.nextInt(1,5);
+                int phaseLength = random.nextInt(1,50);
                 writer.write(String.format("%-15d %-15d %-15d\n", PID, appearanceTime,phaseLength));
             }
         } catch (IOException e) {
@@ -55,11 +57,13 @@ public class Data {
     }
 
     public static void main(String[] args) {
-        generateDataSet(20);
+        generateDataSet(30);
         ArrayList<Process> dataSet = getDataSet();
 
         for(Process process: dataSet){
             System.out.println(process);
         }
+
+        //test update
     }
 }

@@ -37,7 +37,6 @@ public class SRTF extends SchedulingAlgorithm implements SchedulingStrategy{
                 time++;
             }
         }
-
         statistics(resolved);
     }
 }
