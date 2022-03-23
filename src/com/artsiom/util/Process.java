@@ -51,7 +51,21 @@ public class Process {
                 ", phaseLength=" + phaseLength +
                 ", appearanceTime=" + appearanceTime +
                 ", waitingTime=" + waitingTime +
-                ", remaining time=" + remainingTime +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Process process = (Process) o;
+
+        if (PID != process.PID) return false;
+        if (phaseLength != process.phaseLength) return false;
+        if (appearanceTime != process.appearanceTime) return false;
+        if (waitingTime != process.waitingTime) return false;
+        return remainingTime == process.remainingTime;
+    }
+
 }

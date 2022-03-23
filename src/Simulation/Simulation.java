@@ -1,10 +1,7 @@
 package Simulation;
 
 import Comparators.ProcessArrivalTimeComparator;
-import Strategy.FCFS;
-import Strategy.SJF;
-import Strategy.SRTF;
-import Strategy.SchedulingStrategy;
+import Strategy.*;
 
 import java.util.ArrayList;
 
@@ -13,12 +10,13 @@ import com.artsiom.util.Process;
 
 public class Simulation {
 
-    SchedulingStrategy CPUSchedulingAlgorithm;
-    ArrayList<Process> data;
+    private SchedulingStrategy CPUSchedulingAlgorithm;
+    private String data;
 
 
-    public Simulation(SchedulingStrategy CPUSchedulingAlgorithm) {
+    public Simulation(SchedulingStrategy CPUSchedulingAlgorithm,String data) {
         this.CPUSchedulingAlgorithm = CPUSchedulingAlgorithm;
+        this.data = data;
     }
 
     public void setCPUSchedulingAlgorithm(SchedulingStrategy CPUSchedulingAlgorithm) {
@@ -26,11 +24,11 @@ public class Simulation {
     }
 
     public void runSimulation(){
-        CPUSchedulingAlgorithm.run();
+        CPUSchedulingAlgorithm.run(data);
     }
 
     public static void main(String[] args) {
-        Simulation simulation = new Simulation(new FCFS());
+        Simulation simulation = new Simulation(new FCFS(), "big");
         simulation.runSimulation();
 
         simulation.setCPUSchedulingAlgorithm(new SJF());
@@ -38,6 +36,8 @@ public class Simulation {
 
         simulation.setCPUSchedulingAlgorithm(new SRTF());
         simulation.runSimulation();
-
+//
+        simulation.setCPUSchedulingAlgorithm(new RR(50));;
+        simulation.runSimulation();
     }
 }
