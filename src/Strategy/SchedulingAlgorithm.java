@@ -9,12 +9,14 @@ public abstract class SchedulingAlgorithm{
 
     public void statistics(ArrayList<Process> resolved) {
         int waitingTime = 0;
+        int responseTime = 0;
         for(Process process: resolved){
 //            System.out.println(process);
             waitingTime += process.getWaitingTime();
+            responseTime += process.getResponseTime();
         }
         System.out.printf("Average waiting time:%.2f\n", (double)waitingTime/(double) resolved.size());
-        System.out.println();
+        System.out.printf("Average response time:%.2f\n", (double)responseTime/(double) resolved.size());
     }
 
     public Queue<Process> newProcesses(int time , ArrayList<Process> processes, Queue<Process> waitingProcesses ){

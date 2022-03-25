@@ -29,9 +29,12 @@ public class FCFS extends SchedulingAlgorithm implements SchedulingStrategy{
             }
         }
         statistics(resolved);
+        System.out.println("Context switches:"+resolved.size());
     }
 
     public int resolveProcess(Process temp, int time){
+        temp.setResponseTime(time - temp.getAppearanceTime());
+
         if(time - temp.getAppearanceTime() < 0){
             temp.setWaitingTime(0);
         }else {
