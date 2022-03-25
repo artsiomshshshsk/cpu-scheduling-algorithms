@@ -28,17 +28,22 @@ public class RR extends SchedulingAlgorithm implements SchedulingStrategy{
         waitingQueue = new Queue<>();
 
         int time = 0;
+        int contextSwitches = 0;
         while(processes.size() != 0 || waitingQueue.size() != 0){
             waitingQueue = newProcesses(time, processes,waitingQueue);
             if(waitingQueue.size()!=0){
                 Process temp = waitingQueue.pop();
+                contextSwitches++;
+                if(temp.getRemainingTime() == temp.getPhaseLength()){
+                    temp.setResponseTime(time - temp.getAppearanceTime());
+                }
                 time = resolveProcess(temp, time);
             }else{
                 time++;
             }
         }
-
         statistics(resolved);
+        System.out.println("Context switches:"+contextSwitches);
     }
 
 
@@ -56,5 +61,4 @@ public class RR extends SchedulingAlgorithm implements SchedulingStrategy{
         }
         return time;
     }
-
 }

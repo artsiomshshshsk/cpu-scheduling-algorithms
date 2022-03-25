@@ -28,16 +28,36 @@ public class Simulation {
     }
 
     public static void main(String[] args) {
-        Simulation simulation = new Simulation(new FCFS(), "big");
+//        String dataFileName = "small";
+//        String dataFileName = "medium";
+        String dataFileName = "large";
+//        String dataFileName = "test";
+//        String dataFileName = "SRTF_better_than_SJF";
+//        String dataFileName = "bad_for_FCFS";
+
+
+        System.out.println("_____________________________________________");
+        System.out.println();
+        System.out.println("TOTAL NUMBER OF PROCESSES:" + Data.getDataSet(dataFileName).size());
+        System.out.println();
+//        System.out.println("_____________________________________________");
+        System.out.println();
+
+        Simulation simulation = new Simulation(new FCFS(), dataFileName);
         simulation.runSimulation();
+        System.out.println();
+
 
         simulation.setCPUSchedulingAlgorithm(new SJF());
         simulation.runSimulation();
+        System.out.println();
 
         simulation.setCPUSchedulingAlgorithm(new SRTF());
         simulation.runSimulation();
-//
-        simulation.setCPUSchedulingAlgorithm(new RR(50));;
+        System.out.println();
+
+        simulation.setCPUSchedulingAlgorithm(new RR(1));;
         simulation.runSimulation();
+        System.out.println();
     }
 }

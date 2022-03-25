@@ -57,9 +57,9 @@ public class Data {
     }
 
     public static void main(String[] args) {
-        String filename = "small";
+        String filename = "large";
 
-        generateDataSet(filename,20,1,20);
+        generateDataSet(filename,1000,1,20);
         ArrayList<Process> dataSet = getDataSet(filename);
 
         for(Process process: dataSet){

@@ -6,6 +6,7 @@ public class Process {
     int appearanceTime;
     int waitingTime;
     int remainingTime;
+    int responseTime;
 
     public Process(int PID, int phaseLength, int appearanceTime) {
         this.PID = PID;
@@ -42,6 +43,14 @@ public class Process {
 
     public void setRemainingTime(int remainingTime) {
         this.remainingTime = remainingTime;
+    }
+
+    public int getResponseTime() {
+        return responseTime;
+    }
+
+    public void setResponseTime(int responseTime) {
+        this.responseTime = responseTime;
     }
 
     @Override

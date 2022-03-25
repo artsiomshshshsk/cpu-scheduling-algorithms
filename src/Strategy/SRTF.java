@@ -13,6 +13,7 @@ public class SRTF extends SchedulingAlgorithm implements SchedulingStrategy{
     @Override
     public void run(String filename) {
         System.out.println("___________________SRTF________________________"); // Shortest remaining time first;
+
         ArrayList<Process> processes = Data.getDataSet(filename);
         ArrayList<Process> resolved = new ArrayList<>();
         Queue<Process> waitingQueue = new Queue<>();
@@ -20,15 +21,24 @@ public class SRTF extends SchedulingAlgorithm implements SchedulingStrategy{
         processes.sort(new ProcessArrivalTimeComparator());
 
         int time = 0;
+        int contextSwitches = 0;
+        Process prev = null;
 
 
         while (processes.size() != 0 || waitingQueue.size() != 0){
             waitingQueue = newProcesses(time, processes,waitingQueue);
             waitingQueue.sort(new ProcessRemainingTimeComparator());
 
-
             if(waitingQueue.size() != 0){
                 Process temp = waitingQueue.first();
+                if(prev == temp){
+                    contextSwitches++;
+                }
+                prev = temp;
+
+                if(temp.getRemainingTime() == temp.getPhaseLength()){
+                    temp.setResponseTime(time - temp.getAppearanceTime());
+                }
 
                 temp.setRemainingTime(temp.getRemainingTime()-1);
                 time++;
@@ -43,5 +53,6 @@ public class SRTF extends SchedulingAlgorithm implements SchedulingStrategy{
             }
         }
         statistics(resolved);
+        System.out.println("Context switches:"+contextSwitches);
     }
 }
